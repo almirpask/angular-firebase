@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { TaskService } from './../task.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../models/task.model';
@@ -9,24 +11,14 @@ import { Task } from '../models/task.model';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Task[] = [
-    {
-      uid: '',
-      title: 'Angurson',
-      done: false
-    },
-    {
-      uid: '',
-      title: 'Firebaserson',
-      done: false
-    }
-  ];
+  tasks$: Observable<Task[]>;
 
   selectedTask: Task;
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
-  ngOnInit() {
+  ngOnInit(): void  {
+    this.tasks$ = this.taskService.tasks.valueChanges();
   }
 
   onPerformTask(task: Task): void {

@@ -1,3 +1,4 @@
+import { TaskService } from './task.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
@@ -25,7 +26,7 @@ import { TaskListComponent } from './task-list/task-list.component';
     MatLineModule,
     MatSlideToggleModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
